@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
-#include <ctime>
 #include <conio.h>
 
 using namespace std;
@@ -12,14 +11,14 @@ cout << "\tMENU" << endl;
 	cout << "1. START" << endl;
 	cout << "2. EXIT" << endl;
 	cout << endl;
-	cout << "Enter actrion (1/2): ";
+	cout << "Enter action (1/2): ";
 	cin >> *ptrchoiseMenu;
 }
-void showMatrix(string matrix, int row, int col)
+void showMatrix(string matrix[][20])
 {
-	for (int i = 0; i < row; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		for (int j = 0; j < col; j++)
+		for (int j = 0; j < 20; j++)
 		{
 			cout << matrix[i][j] << " ";
 		}
@@ -34,9 +33,8 @@ int main()
 	i_input = _getch();
 	int x = 1;
 	int y = 1;
-	const int row = 20;
-	const int col = 20;
-	string myMatrix[row][col] = {
+	string codeWord;
+	string myMatrix[20][20] = {
 		"*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", 
 		"*", " ", " ", "*", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "*",
 		"*", " ", " ", "*", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "*", "*", "*", "*",
@@ -59,10 +57,11 @@ int main()
 		"*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"
 	};
 	myMatrix[x][y] = "$";
+	
 
 	int choiseMenu;
 	int* ptrchoiseMenu = &choiseMenu;
-
+	
 
 	cout << "#       #\t# # # #\t\t# # # #\t\t# # # #" << endl;
 	cout << "# #   # #\t#     #\t\t      #\t\t#      " << endl;
@@ -79,48 +78,294 @@ int main()
 		{
 		case 1:
 			do {
-				
-				showMatrix(myMatrix[row][col], row, col);
+				codeWord = " ";
+				showMatrix(myMatrix);
 
-				cout << "Use W/A/S/D to move $" << endl;
-				switch (i_input) {
-				case 17: if (myMatrix[x - 1][y] == "*")
+				cout << "Use ^/v/</> to move $" << endl;
+				//cin >> i_input;
+				switch (_getch())
 				{
-					myMatrix[x][y] = "$";
-				}
-					   else if (myMatrix[x - 1][y] == "#")
+				case 75: 
+					if (myMatrix[x][y-1] == "*")
 				{
-					for (int i = 0; i < 5; i++)
-					{
-						Sleep(500);
-						system("clr");
-					cout << "# # # # #\t\t# # # # #\t\t#        #\t\t# # # # #" << endl;
-					cout << "#       #\t\t#       #\t\t# #    # #\t\t#        " << endl;
-					cout << "#        \t\t#       #\t\t#  #  #  #\t\t#        " << endl;
-					cout << "# # # # #\t\t# # # # #\t\t#    #   #\t\t# # # # #" << endl;
-					cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
-					cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
-					cout << "# # # # #\t\t#       #\t\t#        #\t\t# # # # #" << endl;
-					cout << endl;
-					cout << endl;
-					cout << "# # # # #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
-					cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
-					cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
-					cout << "#       #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
-					cout << "#       #\t\t#       #\t\t#        \t\t#   #    " << endl;
-					cout << "#       #\t\t  #   #  \t\t#        \t\t#     #  " << endl;
-					cout << "# # # # #\t\t    #    \t\t# # # # #\t\t#       #" << endl;
-
-					}
-
-				}
 					
 				}
-			} while (myMatrix[1][1] != myMatrix[18][18]);
+					else if (myMatrix[x][y-1] == "#")
+				{
+
+					for (int i = 0; i < 5; i++)
+					{
+						Sleep(1000);
+						system("CLS");
+						Sleep(1000);
+						cout << "# # # # #\t\t# # # # #\t\t#        #\t\t# # # # #" << endl;
+						cout << "#       #\t\t#       #\t\t# #    # #\t\t#        " << endl;
+						cout << "#        \t\t#       #\t\t#  #  #  #\t\t#        " << endl;
+						cout << "# # # # #\t\t# # # # #\t\t#    #   #\t\t# # # # #" << endl;
+						cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+						cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+						cout << "# # # # #\t\t#       #\t\t#        #\t\t# # # # #" << endl;
+						cout << endl;
+						cout << endl;
+						cout << "# # # # #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+						cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+						cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+						cout << "#       #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+						cout << "#       #\t\t#       #\t\t#        \t\t#   #    " << endl;
+						cout << "#       #\t\t  #   #  \t\t#        \t\t#     #  " << endl;
+						cout << "# # # # #\t\t    #    \t\t# # # # #\t\t#       #" << endl;
+
+					}
+					myMatrix[x][y] = " ";
+					x = 1;
+					y = 1;
+					myMatrix[x][y] = "$";
+					codeWord = "stop";
+					break;
+				}
+				else if (myMatrix[x][y-1] == "F")
+				{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(1000);
+							system("CLS");
+							Sleep(1000);
+							cout << "#       #\t\t# # # # #\t\t#       #\t\t\t\t#       #\t\t# # # # #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "  # # #  \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t# #     #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#   #   #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#     # #" << endl;
+							cout << "    #    \t\t# # # # #\t\t# # # # #\t\t\t\t# #   # #\t\t# # # # #\t\t#       #" << endl;
+						}
+						myMatrix[x][y] = " ";
+
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						codeWord = "stop";
+
+						
+				}
+				else 
+					{
+						y--;
+						myMatrix[x][y] = "$";
+						myMatrix[x][y + 1] = " ";
+					}
+					break;
+				case 77:
+					if (myMatrix[x][y + 1] == "*")
+					{
+
+					}
+					else if (myMatrix[x][y + 1] == "#")
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(1000);
+							system("CLS");
+							Sleep(1000);
+							cout << "# # # # #\t\t# # # # #\t\t#        #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t# #    # #\t\t#        " << endl;
+							cout << "#        \t\t#       #\t\t#  #  #  #\t\t#        " << endl;
+							cout << "# # # # #\t\t# # # # #\t\t#    #   #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "# # # # #\t\t#       #\t\t#        #\t\t# # # # #" << endl;
+							cout << endl;
+							cout << endl;
+							cout << "# # # # #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#   #    " << endl;
+							cout << "#       #\t\t  #   #  \t\t#        \t\t#     #  " << endl;
+							cout << "# # # # #\t\t    #    \t\t# # # # #\t\t#       #" << endl;
+
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						
+						codeWord = "stop";
+						break;
+					}
+					else if (myMatrix[x][y + 1] == "F")
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(1000);
+							system("CLS");
+							Sleep(1000);
+							cout << "#       #\t\t# # # # #\t\t#       #\t\t\t\t#       #\t\t# # # # #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "  # # #  \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t# #     #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#   #   #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#     # #" << endl;
+							cout << "    #    \t\t# # # # #\t\t# # # # #\t\t\t\t# #   # #\t\t# # # # #\t\t#       #" << endl;
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						codeWord = "stop";
+
+
+					}
+					else
+					{
+						y++;
+						myMatrix[x][y] = "$";
+						myMatrix[x][y - 1] = " ";
+					}
+					break;
+				case 72:
+					if (myMatrix[x-1][y] == "*")
+					{
+
+					}
+					else if (myMatrix[x-1][y] == "#")
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(2000);
+							system("CLS");
+							Sleep(1000);
+							cout << "# # # # #\t\t# # # # #\t\t#        #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t# #    # #\t\t#        " << endl;
+							cout << "#        \t\t#       #\t\t#  #  #  #\t\t#        " << endl;
+							cout << "# # # # #\t\t# # # # #\t\t#    #   #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "# # # # #\t\t#       #\t\t#        #\t\t# # # # #" << endl;
+							cout << endl;
+							cout << endl;
+							cout << "# # # # #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#   #    " << endl;
+							cout << "#       #\t\t  #   #  \t\t#        \t\t#     #  " << endl;
+							cout << "# # # # #\t\t    #    \t\t# # # # #\t\t#       #" << endl;
+
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						
+						codeWord = "stop";
+						break;
+					}
+					else if (myMatrix[x-1][y] == "F")
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(2000);
+							system("CLS");
+							Sleep(1000);
+							cout << "#       #\t\t# # # # #\t\t#       #\t\t\t\t#       #\t\t# # # # #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "  # # #  \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t# #     #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#   #   #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#     # #" << endl;
+							cout << "    #    \t\t# # # # #\t\t# # # # #\t\t\t\t# #   # #\t\t# # # # #\t\t#       #" << endl;
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						codeWord = "stop";
+
+					}
+					else
+					{
+						x--;
+						myMatrix[x][y] = "$";
+						myMatrix[x+1][y] = " ";
+					}
+					break;
+					
+				case 80:
+					if (myMatrix[x + 1][y] == "*")
+					{
+
+					}
+					else if (myMatrix[x + 1][y] == "#")
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(2000);
+							system("CLS");
+							Sleep(1000);
+							cout << "# # # # #\t\t# # # # #\t\t#        #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t# #    # #\t\t#        " << endl;
+							cout << "#        \t\t#       #\t\t#  #  #  #\t\t#        " << endl;
+							cout << "# # # # #\t\t# # # # #\t\t#    #   #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "#       #\t\t#       #\t\t#        #\t\t#        " << endl;
+							cout << "# # # # #\t\t#       #\t\t#        #\t\t# # # # #" << endl;
+							cout << endl;
+							cout << endl;
+							cout << "# # # # #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t# # # # #\t\t# # # # #" << endl;
+							cout << "#       #\t\t#       #\t\t#        \t\t#   #    " << endl;
+							cout << "#       #\t\t  #   #  \t\t#        \t\t#     #  " << endl;
+							cout << "# # # # #\t\t    #    \t\t# # # # #\t\t#       #" << endl;
+
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						codeWord = "stop";
+						break;
+					}
+					else if (myMatrix[x + 1][y] == "F")
+					{
+
+						for (int i = 0; i < 5; i++)
+						{
+							Sleep(2000);
+							system("CLS");
+							Sleep(1000);
+							cout << "#       #\t\t# # # # #\t\t#       #\t\t\t\t#       #\t\t# # # # #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "#       #\t\t#       #\t\t#       #\t\t\t\t#       #\t\t#       #\t\t#       #" << endl;
+							cout << "  # # #  \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t# #     #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#   #   #" << endl;
+							cout << "    #    \t\t#       #\t\t#       #\t\t\t\t#   #   #\t\t#       #\t\t#     # #" << endl;
+							cout << "    #    \t\t# # # # #\t\t# # # # #\t\t\t\t# #   # #\t\t# # # # #\t\t#       #" << endl;
+						}
+						myMatrix[x][y] = " ";
+						x = 1;
+						y = 1;
+						myMatrix[x][y] = "$";
+						codeWord = "stop";
+
+						
+					}
+					else
+					{
+						x++;
+						myMatrix[x][y] = "$";
+						myMatrix[x - 1][y] = " ";
+					}
+					break;
+				}
+				system("CLS");
+				
+			} while (codeWord!="stop");
 		break;
 
 		case 2:
-			cout << "GOOGBYE!!!" << endl;
+			cout << "GOODBYE!!!" << endl;
 			Sleep(1000);
 		default:
 			break;
